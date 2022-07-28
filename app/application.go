@@ -6,7 +6,7 @@ var (
 	router = gin.Default()
 )
 
-func startApplication() {
+func StartApplication() {
 	mapUrls()
 	router.Run(":8080")
 }
