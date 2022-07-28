@@ -8,5 +8,5 @@ var (
 
 func startApplication() {
 	mapUrls()
-	router.Run(addr)
+	router.Run(addr, ":8080")
 }
