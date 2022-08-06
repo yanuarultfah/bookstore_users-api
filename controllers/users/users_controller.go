@@ -1,28 +1,34 @@
 package users
 
 import (
-	"encoding/json"
+	"errors"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-delve/delve/service"
 	"github.com/yanuarultfah/bookstore_users-api/domain/users"
+	"github.com/yanuarultfah/bookstore_users-api/services"
 )
 
 func CreateUser(c *gin.Context) {
 	var user users.User
 	fmt.Println(user)
-	bytes, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
+	// bytes, err := ioutil.ReadAll(c.Request.Body)
+	if err := c.ShouldBindJSON(&user); err != nil {
+		restErr := errors.RestErr{
+			message: "Invalid Json Body",
+			Code:    http.StatusBadRequest,
+			Error:   "bad_request",
+		}
+		fmt.Println(err)
 		return
 	}
-	if err := json.Unmarshal(bytes, &user); err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-	result, saveErr := service.CreateUser(user)
+
+	// if err := json.Unmarshal(bytes, &user); err != nil {
+	// 	fmt.Println(err.Error())
+	// 	return
+	// }
+	result, saveErr := services.CreateUser(user)
 	if saveErr != nil {
 		return
 	}
