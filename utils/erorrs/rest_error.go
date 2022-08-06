@@ -2,6 +2,6 @@ package erorrs
 
 type RestErr struct {
 	Message string
-	Code    int
+	Status  int
 	Error   string
 }
