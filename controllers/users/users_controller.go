@@ -20,7 +20,7 @@ func CreateUser(c *gin.Context) {
 			Status:  http.StatusBadRequest,
 			Error:   "bad_request",
 		}
-		c.JSON(restErr.Status)
+		c.JSON(restErr.Status, restErr)
 		return
 	}
 
