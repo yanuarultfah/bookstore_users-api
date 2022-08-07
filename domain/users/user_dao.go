@@ -3,7 +3,6 @@ package users
 import (
 	"fmt"
 
-	"github.com/yanuarultfah/bookstore_users-api/utils/date_utils"
 	"github.com/yanuarultfah/bookstore_users-api/utils/erorrs"
 )
 
