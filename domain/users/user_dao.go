@@ -3,6 +3,7 @@ package users
 import (
 	"fmt"
 
+	"github.com/yanuarultfah/bookstore_users-api/utils/date_utils"
 	"github.com/yanuarultfah/bookstore_users-api/utils/erorrs"
 )
 
@@ -10,7 +11,7 @@ var (
 	usersDB = make(map[int64]*User)
 )
 
-func (user User) Get() *erorrs.RestErr {
+func (user *User) Get() *erorrs.RestErr {
 	result := usersDB[user.Id]
 	if result == nil {
 		return erorrs.NewNotFoundError(fmt.Sprintf("User %d Not found", user.Id))
@@ -31,6 +32,7 @@ func (user *User) Save() *erorrs.RestErr {
 		}
 		return erorrs.NewBadRequestError(fmt.Sprintf("User Already %d exist", user.Id))
 	}
+	user.DateCreated = date_utils.GetNowString()
 	usersDB[user.Id] = user
 	return nil
 }

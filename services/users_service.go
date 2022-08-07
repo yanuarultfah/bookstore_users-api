@@ -6,11 +6,11 @@ import (
 )
 
 func GetUser(userId int64) (*users.User, *erorrs.RestErr) {
-	result := users.User{Id: userId}
+	result := &users.User{Id: userId}
 	if err := result.Get(); err != nil {
 		return nil, err
 	}
-	return &result, nil
+	return result, nil
 }
 
 func CreateUser(user users.User) (*users.User, *erorrs.RestErr) {
