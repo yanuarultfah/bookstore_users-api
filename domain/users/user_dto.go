@@ -20,4 +20,5 @@ func (user *User) Validate() *erorrs.RestErr {
 	if user.Email == "" {
 		return erorrs.NewBadRequestError("Invalid Json Body")
 	}
+	return nil
 }
