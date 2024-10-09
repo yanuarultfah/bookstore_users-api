@@ -1,15 +1,13 @@
-package date_utils
+package dateutils
 
-import (
-	"time"
-)
+import "time"
 
 const (
-	apiDateLayout = "2006-01-02T15:04:05Z"
+	apiDateLayout = "02-01-2006 15:04:05"
 )
 
 func GetNow() time.Time {
-	return time.Now().UTC()
+	return time.Now()
 }
 
 func GetNowString() string {
